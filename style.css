@@ -1,0 +1,179 @@
+@font-face {
+  font-family: CottonCloud;
+  src: url(Cotton\ Cloud.ttf);
+}
+
+@font-face {
+  font-family: Banner;
+  src: url(Ribbons-and-banners.ttf);
+}
+
+*, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --cell-size: 200px;
+    --mark-size: calc(var(--cell-size) * .9);
+  }
+  h1 {
+    text-align: center;
+    font-family: Banner;
+    font-size: 55px;
+    color: black;
+  }
+  body {
+    margin: 0;
+    background-image: url("aestheticBG.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .board {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(3, auto)
+  }
+  
+  .cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 5px double black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .cell:first-child,
+  .cell:nth-child(2),
+  .cell:nth-child(3) {
+    border-top: none;
+  }
+  
+  .cell:nth-child(3n + 1) {
+    border-left: none;
+  }
+  
+  .cell:nth-child(3n + 3) {
+    border-right: none;
+  }
+  
+  .cell:last-child,
+  .cell:nth-child(8),
+  .cell:nth-child(7) {
+    border-bottom: none;
+  }
+  
+  .cell.x,
+  .cell.circle {
+    cursor: not-allowed;
+  }
+  
+  .cell.x::before,
+  .cell.x::after,
+  .cell.circle::before {
+    background: black;
+  }
+
+  
+  .cell:not(.x).circle {
+    background-image: url(music-note.png);
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .cell:not(.circle).x {
+    background-image: url(trebleClef.png);
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .board.x .cell:not(.circle):not(.x):hover{
+    background-image: url(trebleClef.png);
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .board.circle .cell:not(.circle):not(.x):hover{
+    background-image: url(music-note.png);
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .cell.circle::before,
+  .cell.circle::after,
+  .board.circle .cell:not(.x):not(.circle):hover::before,
+  .board.circle .cell:not(.x):not(.circle):hover::after {
+    content: '';
+    position: absolute;
+    border-radius: 10%;
+  }
+  
+  .cell:not(.x):not(.circle):hover::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+  }
+  
+  .cell:not(.x):not(.circle):hover::after {
+    background-image: url(trebleClef.png);
+    background-size: 90% 90%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  
+  .winning-message {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(houseGif.gif);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0, 0, 0, .9);
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 5px double rgb(131, 0, 120);
+    font-size: 10rem;
+    flex-direction: column;
+    font-family: Banner;
+
+  }
+  
+  
+  .winning-message button {
+    font-size: 3rem;
+    background-color: white;
+    border: 2px solid white;
+    padding: .25em .5em;
+    cursor: pointer;
+    border-radius: 25px;
+    font-family: CottonCloud;
+  }
+  
+  .winning-message button:hover {
+    background-color: rgb(170, 0, 0);
+    color: white;
+    border-color: white;
+    border: 5px double white;
+    font-family: CottonCloud;
+  }
+  
+  .winning-message.show {
+    display: flex;
+  }
