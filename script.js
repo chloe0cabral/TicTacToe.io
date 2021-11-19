@@ -23,7 +23,7 @@ startGame()
 restartButton.addEventListener('click', startGame)
 
 var myMusic;
-myMusic = new Audio("passion.wav");
+myMusic = new Audio("pinky.wav");
 
 function startGame() {
   circleTurn = false
